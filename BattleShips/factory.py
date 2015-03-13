@@ -7,7 +7,7 @@ class ShipFactory(object):
     def create(ship_type, fleet_name):
         """
         Creating ships
-        :param ship_type: tuple
+        :param ship_type: (string, int)
         :param fleet_name: string
         :return: Ship
         """

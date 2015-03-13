@@ -2,14 +2,22 @@ import string
 
 
 class GameBoard(object):
+    """
+    Basic game board that can be used in any game with x-y board
+    """
     def __init__(self, rows, cols):
+        """
+        :param rows: int
+        :param cols: int
+        :return:
+        """
         self._rows = 0
         self._cols = 0
         self._rows_letters = ()
         self._letters_map = {}
 
         if rows > 26:
-            raise Exception('Max 26 rows exceeded')
+            raise Exception('Max 26 rows exceeded')  # Limiting game board rows from A to Z
 
         self._rows = rows
         self._cols = cols
@@ -24,19 +32,34 @@ class GameBoard(object):
         self._rows_letters = tuple(rows_letters)
 
     def get_rows(self):
+        """
+        :return: int
+        """
         return self._rows
 
     def get_cols(self):
+        """
+        :return: int
+        """
         return self._cols
 
     def get_rows_letters(self):
+        """
+        :return: (string)
+        """
         return self._rows_letters
 
     def get_letters_map(self):
+        """
+        :return: dict[int, string]
+        """
         return self._letters_map
 
 
 class BattleField(GameBoard):
+    """
+    BattleShips battlefield
+    """
     water = '.'
     ship_part = 'X'
     missed_shot = '-'
@@ -45,6 +68,11 @@ class BattleField(GameBoard):
     result_miss = False
 
     def __init__(self,  rows, cols):
+        """
+        :param rows: int
+        :param cols: int
+        :return:
+        """
         self._field = {}
         self._fleets = []
         self._shots = []
@@ -54,6 +82,7 @@ class BattleField(GameBoard):
 
     def position_fleet(self, fleet):
         """
+        Positioning fleet of ships on the battle field
         :param fleet: Fleet
         """
         fleet_ships = fleet.get_ships()
@@ -67,8 +96,8 @@ class BattleField(GameBoard):
 
     def _position_ship(self, ship):
         """
-
-        :param ship:
+        Positioning single ship on the battle field
+        :param ship: Ship
         :return:
         """
         import random
@@ -103,7 +132,7 @@ class BattleField(GameBoard):
     def _scan_field(self, ship_length):
         """
         Finding all available start points for positioning a given ship_length
-        :param ship_length:
+        :param ship_length: int
         :return:
         """
         available_positions = {
@@ -145,15 +174,32 @@ class BattleField(GameBoard):
         return available_positions
 
     def get_positioned_fleets(self):
+        """
+        Returning all positioned fleets on the battle field
+        :return: list[Fleet]
+        """
         return self._fleets
 
     def get_field(self):
+        """
+        Get field dict containing all ships
+        :return: dict[(int,int),Ship]
+        """
         return self._field
 
     def get_shots(self):
+        """
+        Returns list of all made shots during the game
+        :return: list[(int,int)]
+        """
         return self._shots
 
     def add_shot(self, shot):
+        """
+        Appending shot and returning hit ship or False
+        :param shot: (int, int)
+        :return: Ship | False
+        """
         self._shots.append(shot)
 
         if shot in self._field:
@@ -165,13 +211,24 @@ class BattleField(GameBoard):
             return self.result_miss
 
     def get_shots_count(self):
+        """
+        How many shots are already made
+        :return: int
+        """
         return len(self._shots)
 
     def get_ship_parts_count(self):
+        """
+        How many ship parts are on the battle field
+        :return: int
+        """
         return len(self._field)
 
 
 class Ship(object):
+    """
+    The ship
+    """
     destroyer = ('Destroyer', 4)
     fighter = ('Fighter', 5)
 
@@ -179,6 +236,7 @@ class Ship(object):
         """
         :param length: int
         :param name: string
+        :param fleet_name: string
         """
         self._length = 0
         self._name = ''
@@ -191,18 +249,33 @@ class Ship(object):
         self._fleet_name = fleet_name
 
     def get_length(self):
+        """
+        :return: int
+        """
         return self._length
 
     def get_name(self):
+        """
+        :return: string
+        """
         return self._name
 
     def is_positioned(self):
+        """
+        :return: True|False
+        """
         return len(self._position) == self._length
 
     def get_position(self):
+        """
+        :return: ((int,int))
+        """
         return self._position
 
     def set_position(self, position):
+        """
+        :param position: ((int,int))
+        """
         self._position = position
 
         if not self.is_positioned():
@@ -210,12 +283,24 @@ class Ship(object):
             raise Exception("Ship wasn't positioned properly.")
 
     def add_damaged_part(self, part):
+        """
+        Adding ship damaged part to damaged parts list
+        :param part: (int, int)
+        """
         self._damaged_parts.append(part)
 
     def is_sunk(self):
+        """
+        Is ship sunk
+        :return: True|False
+        """
         return len(self._damaged_parts) == self._length
 
     def __str__(self):
+        """
+        The string representation of the ship (used for debugging)
+        :return: string
+        """
         position = ''
         if self.is_positioned():
             position = ", position({},{})".format(self._position[0], self._position[-1])
@@ -224,6 +309,10 @@ class Ship(object):
 
 class Fleet(object):
     def __init__(self, name, description):
+        """
+        :param name: string
+        :param description: (((string, int), int), int)
+        """
         self.name = ''
         self.description = ()
         self._ships = {}
@@ -237,6 +326,9 @@ class Fleet(object):
         self.create_ships()
 
     def create_ships(self):
+        """
+        Creating ships for a fleet
+        """
         from factory import ShipFactory
 
         self._ships = {}
@@ -252,4 +344,7 @@ class Fleet(object):
                     self._ships[ship_name].append(ship)
 
     def get_ships(self):
+        """
+        :return: dict[string, list[Ship]]
+        """
         return self._ships
