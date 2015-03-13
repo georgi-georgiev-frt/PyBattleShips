@@ -1,6 +1,7 @@
 PyBattleShips
 =============
 [![Build Status](https://travis-ci.org/georgi-georgiev-frt/PyBattleShips.svg?branch=master)](https://travis-ci.org/georgi-georgiev-frt/PyBattleShips)
+
 Console application - python version of BattleShips game.
 
 Installation
