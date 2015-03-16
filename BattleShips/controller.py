@@ -3,9 +3,9 @@ from entity import BattleField, Fleet, Ship
 
 
 class GameController(object):
-    cheat_show = 'show'
-    mode_transparent_map = 1
-    mode_masked_map = 2
+    CHEAT_SHOW = 'show'
+    MODE_TRANSPARENT_MAP = 1
+    MODE_MASKED_MAP = 2
 
     def __init__(self):
         self._battle_field = None
@@ -52,8 +52,8 @@ class GameController(object):
             if user_input not in self._shot_codes:
                 raise Exception('Not allowed user input')
 
-            if user_input == self.cheat_show:
-                self._draw_field(self.mode_transparent_map)
+            if user_input == self.CHEAT_SHOW:
+                self._draw_field(self.MODE_TRANSPARENT_MAP)
                 return False
 
             user_shot = self._shot_codes[user_input]
@@ -72,7 +72,7 @@ class GameController(object):
 
         return True
 
-    def _draw_field(self, mode=mode_masked_map):
+    def _draw_field(self, mode=MODE_MASKED_MAP):
         sys.stdout.write('0')
         for i in range(0, self._battle_field.get_cols()):
             sys.stdout.write(str(i + 1)),  # cols indexes
@@ -87,13 +87,13 @@ class GameController(object):
             sys.stdout.write(letters_map[i])  # rows indexes
 
             for j in range(0, self._battle_field.get_cols()):
-                if (i, j) in field and ((i, j) in shots or mode == self.mode_transparent_map):
-                    sys.stdout.write(BattleField.ship_part)
+                if (i, j) in field and ((i, j) in shots or mode == self.MODE_TRANSPARENT_MAP):
+                    sys.stdout.write(BattleField.SHIP_PART)
                 elif (i, j) in shots:
-                    sys.stdout.write(BattleField.missed_shot)
+                    sys.stdout.write(BattleField.MISSED_SHOT)
                 else:
-                    if mode == self.mode_masked_map:
-                        sys.stdout.write(BattleField.water)
+                    if mode == self.MODE_MASKED_MAP:
+                        sys.stdout.write(BattleField.WATER)
                     else:
                         sys.stdout.write(' ')
 
@@ -106,7 +106,5 @@ class GameController(object):
             for j in range(0, self._battle_field.get_cols()):
                 shot_codes[letters_map[i].lower() + str(j+1)] = (i, j)
 
-        shot_codes[self.cheat_show] = 'cheat'
+        shot_codes[self.CHEAT_SHOW] = 'cheat'
         self._shot_codes = shot_codes
-
-

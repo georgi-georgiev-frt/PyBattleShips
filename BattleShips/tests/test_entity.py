@@ -1,3 +1,5 @@
+import unittest
+
 from BattleShips.tests import BattleShipsTest
 from BattleShips.entity import GameBoard, BattleField, Fleet, Ship
 

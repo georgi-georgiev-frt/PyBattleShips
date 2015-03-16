@@ -1,3 +1,5 @@
+import unittest
+
 from BattleShips.tests import BattleShipsTest
 from BattleShips.factory import ShipFactory
 
@@ -37,4 +39,3 @@ class TestFactory(BattleShipsTest):
 
 if __name__ == '__main__':
     unittest.main()
-

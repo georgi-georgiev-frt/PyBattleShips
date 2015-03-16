@@ -60,12 +60,12 @@ class BattleField(GameBoard):
     """
     BattleShips battlefield
     """
-    water = '.'
-    ship_part = 'X'
-    missed_shot = '-'
-    horizontal = '0'
-    vertical = '1'
-    result_miss = False
+    WATER = '.'
+    SHIP_PART = 'X'
+    MISSED_SHOT = '-'
+    HORIZONTAL = '0'
+    VERTICAL = '1'
+    RESULT_MISS = False
 
     def __init__(self,  rows, cols):
         """
@@ -106,12 +106,12 @@ class BattleField(GameBoard):
         available_positions = self._scan_field(ship_length)
         ship_position = []
 
-        if len(available_positions[self.horizontal]) > 0 and len(available_positions[self.horizontal]) > 0:
+        if len(available_positions[self.HORIZONTAL]) > 0 and len(available_positions[self.VERTICAL]) > 0:
             orientation = str(random.randint(0, 1))
-        elif len(available_positions[self.horizontal]) > 0:
-            orientation = self.horizontal
-        elif len(available_positions[self.vertical]) > 0:
-            orientation = self.vertical
+        elif len(available_positions[self.HORIZONTAL]) > 0:
+            orientation = self.HORIZONTAL
+        elif len(available_positions[self.VERTICAL]) > 0:
+            orientation = self.VERTICAL
         else:
             raise Exception("Can't place fleet ships. Too much ships on a small field.")
 
@@ -120,7 +120,7 @@ class BattleField(GameBoard):
         start = available_positions[orientation][start_position_rand]
 
         for i in range(0, ship_length):
-            if orientation == self.horizontal:
+            if orientation == self.HORIZONTAL:
                 coordinates = (start[0], start[1]+i)
             else:
                 coordinates = (start[0]+i, start[1])
@@ -136,8 +136,8 @@ class BattleField(GameBoard):
         :return:
         """
         available_positions = {
-            self.horizontal: [],
-            self.vertical: []
+            self.HORIZONTAL: [],
+            self.VERTICAL: []
         }
 
         i = 0
@@ -152,7 +152,7 @@ class BattleField(GameBoard):
                         j += k  # move cursor to the col after allocated sector
                         break
                 else:
-                    available_positions[self.horizontal].append((i, j))
+                    available_positions[self.HORIZONTAL].append((i, j))
                 j += 1
             i += 1
 
@@ -168,7 +168,7 @@ class BattleField(GameBoard):
                         i += k  # move cursor to the row after allocated sector
                         break
                 else:
-                    available_positions[self.vertical].append((i, j))
+                    available_positions[self.VERTICAL].append((i, j))
                 i += 1
             j += 1
         return available_positions
@@ -208,7 +208,7 @@ class BattleField(GameBoard):
             ship.add_damaged_part(shot)
             return ship
         else:
-            return self.result_miss
+            return self.RESULT_MISS
 
     def get_shots_count(self):
         """
