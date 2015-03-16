@@ -1,5 +1,6 @@
 /.idea/
 /*.egg-info/
+/htmlcov/
 
 *.py[cod]
 .coverage

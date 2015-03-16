@@ -22,7 +22,7 @@ class GameController(object):
 
         self._generate_shot_codes()
 
-    def game_play(self):
+    def game_play(self, in_test_mode = False):
         draw = True
         try:
             draw = self._process_user_input()
@@ -33,8 +33,9 @@ class GameController(object):
             self._draw_field()
 
         if self._battle_field.success_shots < self._battle_field.get_ship_parts_count():
-            self._request_user_input()
-            self.game_play()
+            if not in_test_mode:
+                self._request_user_input()
+                self.game_play()
         else:
             self._game_done()
 

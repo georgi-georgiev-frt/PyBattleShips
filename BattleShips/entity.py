@@ -128,6 +128,7 @@ class BattleField(GameBoard):
             ship_position.append(coordinates)
 
         ship.set_position(tuple(ship_position))
+        ship.set_orientation(orientation)
 
     def _scan_field(self, ship_length):
         """
@@ -160,7 +161,7 @@ class BattleField(GameBoard):
         while j < self._rows:
             i = 0
             while i < self._cols:
-                if i + ship_length > self._cols:  # If there isn't enough room to place that ship vertically
+                if i + ship_length > self._rows:  # If there isn't enough room to place that ship vertically
                     break
 
                 for k in range(0, ship_length):
@@ -242,6 +243,7 @@ class Ship(object):
         self._name = ''
         self._fleet_name = ''
         self._position = ()
+        self._orientation = 0
         self._damaged_parts = []
 
         self._length = length
@@ -281,6 +283,18 @@ class Ship(object):
         if not self.is_positioned():
             self._position = ()
             raise Exception("Ship wasn't positioned properly.")
+
+    def set_orientation(self, orientation):
+        """
+        :param orientation: int
+        """
+        self._orientation = orientation
+
+    def get_orientation(self):
+        """
+        :return: int
+        """
+        return self._orientation
 
     def add_damaged_part(self, part):
         """
