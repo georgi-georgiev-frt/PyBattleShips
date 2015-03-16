@@ -2,3 +2,4 @@
 omit =
     bin/*
     *__init__*
+    tests/*
