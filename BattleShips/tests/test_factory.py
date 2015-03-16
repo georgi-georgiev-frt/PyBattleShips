@@ -14,12 +14,12 @@ class TestFactory(BattleShipsTest):
     def test_create_ships(self):
         from BattleShips.entity import Ship
 
-        destroyer_from_factory = ShipFactory.create(Ship.destroyer,  'test_fleet')
-        destroyer = Ship(Ship.destroyer[1], Ship.destroyer[0], 'test_fleet')
+        destroyer_from_factory = ShipFactory.create(Ship.DESTROYER,  'test_fleet')
+        destroyer = Ship(Ship.DESTROYER[1], Ship.DESTROYER[0], 'test_fleet')
         self.compare_ships(destroyer_from_factory, destroyer)
 
-        fighter_from_factory = ShipFactory.create(Ship.fighter, 'test_fleet')
-        fighter = Ship(Ship.fighter[1], Ship.fighter[0], 'test_fleet')
+        fighter_from_factory = ShipFactory.create(Ship.FIGHTER, 'test_fleet')
+        fighter = Ship(Ship.FIGHTER[1], Ship.FIGHTER[0], 'test_fleet')
         self.compare_ships(fighter_from_factory, fighter)
 
     def test_invalid_ship_type_raises_exception(self):

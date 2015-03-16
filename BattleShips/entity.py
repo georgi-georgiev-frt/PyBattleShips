@@ -230,8 +230,8 @@ class Ship(object):
     """
     The ship
     """
-    destroyer = ('Destroyer', 4)
-    fighter = ('Fighter', 5)
+    DESTROYER = ('Destroyer', 4)
+    FIGHTER = ('Fighter', 5)
 
     def __init__(self, length, name, fleet_name):
         """

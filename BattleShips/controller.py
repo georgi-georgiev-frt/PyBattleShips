@@ -14,8 +14,8 @@ class GameController(object):
 
         self._battle_field = BattleField(10, 10)
         fleet = Fleet('game_fleet', (
-            (Ship.destroyer, 2),
-            (Ship.fighter, 1),
+            (Ship.DESTROYER, 2),
+            (Ship.FIGHTER, 1),
         ), )
 
         self._battle_field.position_fleet(fleet)
