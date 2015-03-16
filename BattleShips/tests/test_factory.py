@@ -1,13 +1,13 @@
-import unittest
-
-from BattleShips.tests.battleships_test import BattleShipsTest
+from BattleShips.tests import BattleShipsTest
 from BattleShips.factory import ShipFactory
 
 
-class TestShipFactory(BattleShipsTest):
+class TestFactory(BattleShipsTest):
 
     def setUp(self):
         pass
+
+    # ShipFactory tests
 
     def test_create_ships(self):
         from BattleShips.entity import Ship
