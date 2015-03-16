@@ -1,0 +1,4 @@
+[report]
+omit =
+    bin/*
+    *__init__*
