@@ -80,6 +80,8 @@ class TestEntity(BattleShipsTest):
             self.assertEquals(battle_field.add_shot(ship_part), ship)
             self.assertEquals(battle_field.add_shot(non_ship_part), BattleField.RESULT_MISS)
             self.assertEquals(battle_field.get_shots_count(), 2)
+        else:
+            raise AssertionError("Expected ship is not a Ship")
 
     def position_fleet_test(self, battle_field):
         description = (
@@ -136,7 +138,6 @@ class TestEntity(BattleShipsTest):
             self.assertMatch('Fleet description must be tuple', ex[0])
 
         self.assertEquals(True, exception_raised, 'Expected exception not raised')
-
 
     # GameBoard tests
 
