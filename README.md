@@ -61,7 +61,7 @@ Ship sunk! Sunk all ships!
 
 ![Win!](/docs/images/game_complete.bmp?raw=true "Win!")
 
-Won the game in 14 shots with only one wrong? How is this possible? Try typing 'SHOW'
+Won the game in 14 shots with only one wrong? How is this possible? Try typing '*show*'
 
 ![Missed shot](/docs/images/missed_shot.bmp?raw=true "Missed shot")
 
