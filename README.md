@@ -3,7 +3,9 @@ PyBattleShips
 [![Build Status](https://travis-ci.org/georgi-georgiev-frt/PyBattleShips.svg?branch=master)](https://travis-ci.org/georgi-georgiev-frt/PyBattleShips)
 [![Coverage Status](https://coveralls.io/repos/georgi-georgiev-frt/PyBattleShips/badge.svg)](https://coveralls.io/r/georgi-georgiev-frt/PyBattleShips)
 
-Console application - python version of BattleShips game.
+![PyBattleShips](/docs/images/game_snapshot.bmp?raw=true "PyBattleShips")
+
+Console application - python single-player version of BattleShips game.
 
 Installation
 ------------
