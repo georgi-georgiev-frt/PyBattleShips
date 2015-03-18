@@ -2,6 +2,9 @@ from entity import Ship
 
 
 class ShipFactory(object):
+    """
+    Ship factory for creating ships
+    """
 
     @staticmethod
     def create(ship_type, fleet_name):

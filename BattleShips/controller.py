@@ -3,6 +3,9 @@ from entity import BattleField, Fleet, Ship
 
 
 class GameController(object):
+    """
+    Main game controller
+    """
     CHEAT_SHOW = 'show'
     MODE_TRANSPARENT_MAP = 1
     MODE_MASKED_MAP = 2
@@ -22,7 +25,11 @@ class GameController(object):
 
         self._generate_shot_codes()
 
-    def game_play(self, in_test_mode = False):
+    def game_play(self, in_test_mode=False):
+        """
+        Playing the game
+        :param in_test_mode: boolean
+        """
         draw = True
         try:
             draw = self._process_user_input()
@@ -40,14 +47,23 @@ class GameController(object):
             self._game_done()
 
     def _game_done(self):
+        """
+        Fired once when game done
+        """
         print 'Well done! You completed the game in {} shots'.format(
             str(self._battle_field.get_shots_count())
         )
 
     def _request_user_input(self):
+        """
+        Requesting user input and storing it in a property
+        """
         self.user_input = raw_input("Enter coordinates (row, col), e.g. A5 = ")
 
     def _process_user_input(self):
+        """
+        Processing stored user input
+        """
         user_input = self.user_input.strip().lower()
         if user_input is not '':
             if user_input not in self._shot_codes:
@@ -74,6 +90,10 @@ class GameController(object):
         return True
 
     def _draw_field(self, mode=MODE_MASKED_MAP):
+        """
+        Drawing filed masked or transparent - be able to see where the sips are
+        :param mode: integer
+        """
         sys.stdout.write('0')
         for i in range(0, self._battle_field.get_cols()):
             sys.stdout.write(str(i + 1)),  # cols indexes
@@ -101,6 +121,9 @@ class GameController(object):
             sys.stdout.write('\n')
 
     def _generate_shot_codes(self):
+        """
+        Generating list of available user input - shot codes and cheats
+        """
         letters_map = self._battle_field.get_letters_map()
         shot_codes = {}
         for i in range(0, self._battle_field.get_rows()):

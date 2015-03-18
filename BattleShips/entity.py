@@ -322,6 +322,9 @@ class Ship(object):
 
 
 class Fleet(object):
+    """
+    A fleet of one or many ships.
+    """
     def __init__(self, name, description):
         """
         :param name: string
