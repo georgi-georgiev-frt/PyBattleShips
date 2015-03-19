@@ -67,3 +67,6 @@ Won the game in 14 shots with only one wrong? How is this possible? Try typing '
 
 ![Cheat!](/docs/images/cheat_applied.bmp?raw=true "Cheat!")
 
+
+
+
