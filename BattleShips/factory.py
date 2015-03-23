@@ -4,6 +4,7 @@ from entity import Ship
 class ShipFactory(object):
     """
     Ship factory for creating ships
+    [StaticFactory DP] https://github.com/georgi-georgiev-frt/python-patterns/blob/master/static_factory.py
     """
 
     @staticmethod
