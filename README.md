@@ -17,6 +17,7 @@ Download this repository
 
     cd PyBattleShips
     virtualenv .
+    source ./bin/activate
     
 Install package requirements with pip
 
